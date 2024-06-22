@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resource Kits</title>
+    <style>
+        .cart {
+            width: 50%;
+            margin: auto;
+            text-align: center;
+        }
+        button {
+            background-color: purple;
+            color: white;
+            border-radius: 5px;
+        }
+        .cart-checkbox {
+    margin-right: 10px;
+}
+
+.remove-selected-button {
+    margin-top: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Resource Kits</h1>
+
+    <div class="cart">
+        <table>
+            <tr>
+                <th>Course</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <td>Course 1</td>
+                <td>$10</td>
+                <td><input type="number" min="1" value="1" data-price="10"></td>
+                <td><button onclick="addToCart(1, 10)">Add to Cart</button></td>
+            </tr>
+            <tr>
+                <td>Course 2</td>
+                <td>$20</td>
+                <td><input type="number" min="1" value="1" data-price="20"></td>
+                <td><button onclick="addToCart(2, 20)">Add to Cart</button></td>
+            </tr>
+            <tr>
+                <td>Course 3</td>
+                <td>$40</td>
+                <td><input type="number" min="1" value="1" data-price="40"></td>
+                <td><button onclick="addToCart(3, 40)">Add to Cart</button></td>
+            </tr>
+            <tr>
+                <td>Course 4</td>
+                <td>$50</td>
+                <td><input type="number" min="1" value="1" data-price="50"></td>
+                <td><button onclick="addToCart(4, 50)">Add to Cart</button></td>
+            </tr>
+            <tr>
+                <td>Course 5</td>
+                <td>$80</td>
+                <td><input type="number" min="1" value="1" data-price="80"></td>
+                <td><button onclick="addToCart(5, 80)">Add to Cart</button></td>
+            </tr>
+           
+            
+        </table>
+    </div>
+
+    <hr/>
+
+    <div class="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cartItems"></ul>
+        <p>Total: $<span id="total">0</span></p>
+        <button onclick="removeItem()" class="remove-selected-button">Remove Selected</button>
+        <button onclick="clearCart()">Clear Cart</button>
+        <button onclick="checkout()">Checkout</button>
+   
+    </div>
+
+
+    
+
+    <script>
+        let cart = {};
+
+        function addToCart(courseId, coursePrice) {
+            if (cart[courseId]) {
+                cart[courseId].quantity++;
+            } else {
+                cart[courseId] = {price: coursePrice, quantity: 1};
+            }
+            updateCart();
+        }
+
+        function removeItem() {
+            const checkboxes = document.querySelectorAll('.cart-checkbox:checked');
+            checkboxes.forEach(checkbox => {
+                const courseIdToRemove = parseInt(checkbox.value); 
+                if (cart.hasOwnProperty(courseIdToRemove)) {
+                    delete cart[courseIdToRemove];
+                }
+            });
+            updateCart();
+        }
+
+        function clearCart() {
+            cart = {};
+            updateCart();
+        }
+
+        function checkout() {
+            alert('Thank you for your purchase!');
+            clearCart();
+        }
+
+        function updateCart() {
+            let items = '';
+            let total = 0;
+            for (let courseId in cart) {
+                if (cart.hasOwnProperty(courseId)) {
+                    total += cart[courseId].price * cart[courseId].quantity;
+                    items += `
+                        <li>
+                            <input type="checkbox" class="cart-checkbox" value="${courseId}">
+                            Course ${courseId} x ${cart[courseId].quantity} = $${cart[courseId].price * cart[courseId].quantity}
+                        </li>
+                    `;
+                }
+            }
+            document.getElementById('total').innerHTML = total.toFixed(2);
+            document.getElementById('cartItems').innerHTML = items; 
+        }
+    </script>
+</body>
+</html>
