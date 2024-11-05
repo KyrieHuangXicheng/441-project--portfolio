@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav li {
+            margin-right: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to our Shopping App</h1>
+        <img src="Component 1 (1).png" alt="Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html" >contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <form action="" method="post" onsubmit="return handleFormSubmit();">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message"></textarea>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email">
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age">
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+
+        <label for="newsletter">Subscribe to Newsletter:</label>
+        <input type="checkbox" id="newsletter" name="newsletter">
+
+        <button type="submit">Submit Form</button>
+    </form>
+
+    <footer>
+        &copy; Kyrie Huang Xicheng
+    </footer>
+
+    <script>
+        function handleFormSubmit() {
+            event.preventDefault();
+            const result = confirm("Your message has been sent successfully!");
+            if (result) {
+                window.location.href = "contact.html";
+            }
+        }
+    </script>
+</body>
+</html>
